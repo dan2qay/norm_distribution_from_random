@@ -1,19 +1,22 @@
 from random import randint
 import matplotlib.pyplot as plt
 
-def D(arr): #Высчитывание Дисперсии
+
+def D(arr):  # Высчитывание Дисперсии
     Disp = 0
-    mid = sum(arr)/len(arr)
+    mid = sum(arr) / len(arr)
     for n in arr:
         Disp += (n - mid) ** 2
     Disp /= len(arr)
     return Disp
 
+
 def sigma(arg):
     if str(type(arg)) == "<class 'int'>":
-        return arg ** 1/2
+        return arg ** 1 / 2
     else:
-        return D(arg) ** 1/2
+        return D(arg) ** 1 / 2
+
 
 def choiselist(arr, count):  # Выборка неповторяющихся элементов. Если есть идеи для оптимизации - welcome.
     arr1 = []
@@ -24,7 +27,8 @@ def choiselist(arr, count):  # Выборка неповторяющихся э�
     return arr1
 
 
-heights = [randint(140, 200) for i in range(int(input('Сколько учеников участвует в опросе? ')))]  # Рандомно заполним список длинами ростов учеников класса N
+heights = [randint(140, 200) for i in range(
+    int(input('Сколько учеников участвует в опросе? ')))]  # Рандомно заполним список длинами ростов учеников класса N
 
 '''
 Теперь сформируем выборки
@@ -36,7 +40,6 @@ selections = []
 averages = []
 count_of_samples = int(input('Введите количество выборок: '))
 sample_size = int(input('Сколько учеников в каждой выборке? '))
-
 
 for i in range(count_of_samples):  # Количество выборок
     selections.append(choiselist(heights, sample_size))  # Мощность выборок
@@ -69,15 +72,16 @@ print(count_of_av)
 # Сформируем новый список, который будет отвечать за Y - ординату. Это частота появления определенного
 # типа среднего роста в нашем исследовании
 Y = []
-X = averages
+# X = averages
+X = sorted(averages)
 
 for i in range(len(X)):
-    Y.append(count_of_av[int(averages[i]) - min_av])
-
-
-
+    Y.append(count_of_av[int(X[i]) - min_av])
 
 plt.axvline(x=(mid_av - sigma(averages)), color='g')
+plt.text(mid_av - sigma(averages) - 0.5, -0.5, 'sigma')
 plt.axvline(x=(mid_av + sigma(averages)), color='g')
+plt.text(mid_av + sigma(averages) - 0.5, -0.5, 'sigma')
 plt.bar(X, Y)
+plt.plot(X, Y, 'r', marker=11)
 plt.show()
