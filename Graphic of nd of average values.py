@@ -74,7 +74,7 @@ for i in range(len(X)):
 
 
 
-plt.axvline(x=(mid_av - sigma(averages)), color='r')
-plt.axvline(x=(mid_av + sigma(averages)), color='r')
+plt.axvline(x=(mid_av - sigma(averages)), color='g')
+plt.axvline(x=(mid_av + sigma(averages)), color='g')
 plt.bar(X, Y)
 plt.show()
