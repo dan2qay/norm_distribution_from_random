@@ -79,9 +79,9 @@ for i in range(len(X)):
     Y.append(count_of_av[int(X[i]) - min_av])
 
 plt.axvline(x=(mid_av - sigma(averages)), color='g')
-plt.text(mid_av - sigma(averages) - 0.5, -0.5, 'sigma')
+plt.text(mid_av - sigma(averages), 0.5, 'sigma', rotation=90)
 plt.axvline(x=(mid_av + sigma(averages)), color='g')
-plt.text(mid_av + sigma(averages) - 0.5, -0.5, 'sigma')
+plt.text(mid_av + sigma(averages), 0.5, 'sigma', rotation=90)
 plt.bar(X, Y)
 plt.plot(X, Y, 'r', marker=11)
 plt.show()
